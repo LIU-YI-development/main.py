@@ -1,4 +1,3 @@
-
 import pandas as pd
 import numpy as np
 
@@ -9,7 +8,7 @@ path3 = "C:\\Users\\yliu\\Work Folders\\Desktop\\mainWork_XFab\\working_folder\\
 # first step
 
 df = pd.read_excel(path)
-df.to_excel(path2, index = False)
+df.to_excel(path2, index=False)
 
 # second step
 
@@ -25,8 +24,8 @@ for col in df.iloc[0][:26]:
 
 i = len(newColumnNames) - 1
 while i > 0:
-    df.rename(columns={oldColumnNames[i]:newColumnNames[i]}, inplace=True)
-    i = i-1
+    df.rename(columns={oldColumnNames[i]: newColumnNames[i]}, inplace=True)
+    i = i - 1
 
 # third step
 df1 = df.iloc[:, 0:25]
@@ -35,22 +34,13 @@ df1.replace(r'\s+', np.nan, regex=True)
 
 df2 = df1.fillna(method='ffill')
 # print(df.columns)
-df2[['edge exclusion','reaction plan']]=df[['edge exclusion', 'reaction plan']]
-df2.iloc[0,26]='reaction plan'
-df2.iloc[46:48,26]=''
-df2.iloc[64:65,26]=''
-df2.iloc[98:99,26]=''
-
+df2[['edge exclusion', 'reaction plan']] = df[['edge exclusion', 'reaction plan']]
+df2.iloc[0, 26] = 'reaction plan'
+df2.iloc[46:48, 26] = ''
+df2.iloc[64:65, 26] = ''
+df2.iloc[98:99, 26] = ''
 
 df2['reaction plan'] = df2['reaction plan'].fillna(method='ffill')
-df2 = df2.iloc[1: , :]
+df2 = df2.iloc[1:, :]
 
-df2.to_excel(path3, index = False)
-
-# print(c.loc[0:3,'control item'])
-
-
-
-
-
-
+df2.to_excel(path3, index=False)
